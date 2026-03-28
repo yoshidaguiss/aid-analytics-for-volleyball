@@ -6,6 +6,9 @@
 import { Pool } from "pg";
 
 const DATABASE_URL = process.env.DATABASE_URL;
+console.log("[setup-db] Starting...");
+console.log("[setup-db] DATABASE_URL:", DATABASE_URL ? `SET (${DATABASE_URL.substring(0, 30)}...)` : "NOT SET");
+
 if (!DATABASE_URL) {
   console.error("[setup-db] DATABASE_URL is not set");
   process.exit(1);
@@ -14,12 +17,14 @@ if (!DATABASE_URL) {
 const pool = new Pool({
   connectionString: DATABASE_URL,
   ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false,
+  connectionTimeoutMillis: 10000,
 });
 
 async function setup() {
+  console.log("[setup-db] Connecting to database...");
   const client = await pool.connect();
   try {
-    console.log("[setup-db] Starting database setup...");
+    console.log("[setup-db] Connected! Starting schema setup...");
     await client.query("BEGIN");
 
     // --- Enum types ---
