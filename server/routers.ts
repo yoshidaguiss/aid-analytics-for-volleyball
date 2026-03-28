@@ -128,8 +128,8 @@ export const appRouter = router({
           matchCode,
           status: "preparing",
           currentSet: 1,
-          scoreHome: [],
-          scoreAway: [],
+          scoreHome: null,
+          scoreAway: null,
           timeoutsHome: 0,
           timeoutsAway: 0,
         });

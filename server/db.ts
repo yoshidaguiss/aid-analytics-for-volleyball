@@ -1,5 +1,6 @@
 import { eq, desc, and } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/node-postgres";
+import { Pool } from "pg";
 import { users, teams, players, matches, rallies, plays, aiAnalyses, substitutions, timeouts, serveOrders } from "../drizzle/schema";
 import type { User, InsertUser, Team, InsertTeam, Player, InsertPlayer, Match, InsertMatch, Rally, InsertRally, Play, InsertPlay, AIAnalysis, InsertAIAnalysis, Substitution, InsertSubstitution, Timeout, InsertTimeout, ServeOrder, InsertServeOrder } from "../drizzle/schema";
 import { ENV } from './_core/env';
@@ -10,10 +11,19 @@ let _db: ReturnType<typeof drizzle> | null = null;
 // Lazily create the drizzle instance so local tooling can run without a DB.
 export async function getDb() {
   if (!_db && process.env.DATABASE_URL) {
+    let pool: Pool | null = null;
     try {
-      _db = drizzle(process.env.DATABASE_URL);
+      pool = new Pool({
+        connectionString: process.env.DATABASE_URL,
+        ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false,
+      });
+      // Verify connection is working before assigning
+      await pool.query("SELECT 1");
+      _db = drizzle(pool);
+      console.log("[Database] Connected successfully");
     } catch (error) {
-      console.warn("[Database] Failed to connect:", error);
+      console.error("[Database] Failed to connect:", error);
+      await pool?.end().catch(() => {});
       _db = null;
     }
   }
