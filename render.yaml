@@ -5,7 +5,7 @@ services:
     region: singapore
     plan: free
     buildCommand: pnpm install && pnpm run build
-    startCommand: pnpm drizzle-kit push --force && pnpm run start
+    startCommand: pnpm exec tsx scripts/setup-db.ts && pnpm run start
     envVars:
       - key: NODE_ENV
         value: production
