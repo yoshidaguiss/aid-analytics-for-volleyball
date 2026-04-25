@@ -181,15 +181,19 @@ export default function CoachView() {
     if (!plays || !match) return [];
 
     const currentSet = match.currentSet || 1;
-    const setPlays = (plays as any[]).filter(
-      (p) => p.setNumber === currentSet && (p.result === "point" || p.result === "error")
+    const allScorePlays = (plays as any[]).filter(
+      (p) => p.result === "point" || p.result === "error"
     );
+
+    // setNumber が正しく保存されている場合はセット別に、なければ全体で表示
+    const bySet = allScorePlays.filter((p) => p.setNumber === currentSet);
+    const scorePlays = bySet.length > 0 ? bySet : allScorePlays;
 
     let home = 0;
     let away = 0;
     const data: { rally: number; home: number; away: number }[] = [{ rally: 0, home: 0, away: 0 }];
 
-    setPlays.forEach((p, i) => {
+    scorePlays.forEach((p, i) => {
       if (p.result === "point") {
         if (p.teamSide === "home") home++;
         else away++;

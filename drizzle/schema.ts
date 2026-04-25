@@ -143,6 +143,7 @@ export const plays = pgTable("plays", {
   playerName: varchar("playerName", { length: 255 }).notNull(),
   positionX: real("positionX").notNull(),
   positionY: real("positionY").notNull(),
+  setNumber: integer("setNumber").notNull().default(1),
   details: json("details").$type<{
     serveType?: "jump" | "float";
     serveResult?: "ace" | "in" | "net" | "out" | "error";

@@ -306,6 +306,7 @@ export const appRouter = router({
           playerName: input.playerName,
           positionX: input.positionX,
           positionY: input.positionY,
+          setNumber: input.setNumber,
           result: input.result,
           details: input.details ? JSON.parse(input.details) : null,
           timestamp: new Date(),
