@@ -23,14 +23,9 @@ function BrandLogo({ size = "default" }: { size?: "default" | "sm" }) {
 
   return (
     <div className="inline-block leading-none select-none">
-      <div
-        className={`font-black bg-clip-text text-transparent ${main}`}
-        style={{
-          letterSpacing: "-0.02em",
-          backgroundImage: "linear-gradient(100deg, #1a3560 0%, #1a3560 45%, #c75000 100%)",
-        }}
-      >
-        AID ANALYTICS
+      <div className={`font-black ${main}`} style={{ letterSpacing: "-0.02em" }}>
+        <span style={{ color: "#f97316" }}>AID</span>
+        <span style={{ color: NAVY }}> ANALYTICS</span>
       </div>
       <div className={`font-light text-orange-500 uppercase ${sub} mt-1`}>
         for Volleyball
