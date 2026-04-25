@@ -13,7 +13,7 @@ import {
 const NAVY = "#1a3560";
 
 /* ── Brand lockup ──────────────────────────────────────────── */
-function BrandLogo({ size = "default" }: { size?: "default" | "sm" }) {
+function BrandLogo({ size = "default", white = false }: { size?: "default" | "sm"; white?: boolean }) {
   const main = size === "sm"
     ? "text-2xl"
     : "text-[clamp(2.8rem,8vw,5.5rem)]";
@@ -24,10 +24,16 @@ function BrandLogo({ size = "default" }: { size?: "default" | "sm" }) {
   return (
     <div className="inline-block leading-none select-none">
       <div className={`font-black ${main}`} style={{ letterSpacing: "-0.02em" }}>
-        <span style={{ color: "#f97316" }}>AID</span>
-        <span style={{ color: NAVY }}> ANALYTICS</span>
+        {white ? (
+          <span className="text-white">AID ANALYTICS</span>
+        ) : (
+          <>
+            <span style={{ color: "#f97316" }}>AID</span>
+            <span style={{ color: NAVY }}> ANALYTICS</span>
+          </>
+        )}
       </div>
-      <div className={`font-light text-orange-500 uppercase ${sub} mt-1`}>
+      <div className={`font-light uppercase ${sub} mt-1 ${white ? "text-orange-400" : "text-orange-500"}`}>
         for Volleyball
       </div>
     </div>
@@ -365,9 +371,7 @@ export default function Home() {
       <section className="py-16 px-6 text-white" style={{ backgroundColor: NAVY }}>
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
-            <div style={{ color: "white" }}>
-              <BrandLogo size="sm" />
-            </div>
+            <BrandLogo size="sm" white />
             <p className="text-white/40 text-sm mt-3">チーム登録から分析まですべて無料</p>
           </div>
           <div className="flex flex-wrap gap-3">
