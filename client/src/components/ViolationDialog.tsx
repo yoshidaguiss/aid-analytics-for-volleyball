@@ -23,7 +23,7 @@ const VIOLATIONS: { value: ViolationType; label: string; desc: string }[] = [
   { value: "net_touch",              label: "ネットタッチ",            desc: "ボールと関係なくネットに触れた" },
   { value: "double_contact",         label: "ダブルコンタクト",         desc: "同一選手が連続してボールに触れた（ドリブル）" },
   { value: "out_of_position",        label: "アウトオブポジション",     desc: "サーブ時のローテーション違反" },
-  { value: "long_serve",             label: "ロングサーブ",             desc: "サーブがエンドラインを越えた" },
+  { value: "long_serve",             label: "ロングサーバー",           desc: "サーブ順（ローテーション順）を間違えてサーブした" },
   { value: "passing",                label: "パッシング",               desc: "ボールが完全にネットを越えずに相手コートへ" },
   { value: "line_cross_serve",       label: "ラインクロス（サーブ）",   desc: "サーブ時にエンドラインを踏んだ" },
   { value: "line_cross_back_attack", label: "ラインクロス（バック）",   desc: "バックアタック時にアタックラインを踏んだ" },
