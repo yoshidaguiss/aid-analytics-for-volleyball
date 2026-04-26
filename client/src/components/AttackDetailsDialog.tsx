@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 type AttackPosition = "1" | "2" | "3" | "4" | "5";
-type AttackType = "open" | "quickA" | "quickB" | "quickC" | "quickD" | "back" | "pipe" | "slide" | "parallel";
+type AttackType = "open" | "quickA" | "quickB" | "quickC" | "quickD" | "back" | "pipe" | "slide" | "parallel" | "feint" | "push";
 type AttackCourse = "straight" | "cross";
 type AttackResult = "kill" | "blocked" | "dug" | "error" | "out";
 type LandingOutType = "out" | "block_out";
@@ -133,6 +133,8 @@ export default function AttackDetailsDialog({
     { value: "back", label: "バックアタック", description: "後衛からの攻撃" },
     { value: "pipe", label: "パイプ", description: "センター後衛" },
     { value: "slide", label: "スライド", description: "移動しながらの速攻" },
+    { value: "feint", label: "フェイント", description: "軽く落とす軟打" },
+    { value: "push", label: "プッシュ", description: "指先で押し込む攻撃" },
   ];
 
   const attackCourses: Array<{ value: AttackCourse; label: string }> = [

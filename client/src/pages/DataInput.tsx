@@ -181,6 +181,7 @@ export default function DataInput() {
         { playType: "attack" as PlayType, result: "point" as PlayResult, label: "決まった", color: "bg-gradient-to-br from-emerald-500 to-emerald-600" },
         { playType: "attack" as PlayType, result: "error" as PlayResult, label: "ミス", color: "bg-gradient-to-br from-rose-500 to-rose-600" },
         { playType: "attack" as PlayType, result: "continue" as PlayResult, label: "拾われた", color: "bg-gradient-to-br from-amber-500 to-amber-600" },
+        { playType: "attack" as PlayType, result: "continue" as PlayResult, label: "ラリー継続", color: "bg-gradient-to-br from-sky-500 to-sky-600" },
       ],
     },
     {
